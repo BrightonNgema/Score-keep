@@ -2,34 +2,46 @@ import {Meteor} from 'meteor/meteor';
 import {Players} from './../imports/api/players';
 
 Meteor.startup(function(){
- // Players.insert({
- //   name: 'Khanyi',
- //   score: 50
- // });
- // console.log(Players.find().fetch());
+  class Person {
+    constructor(name = 'Nicki', age='0'){
+      this.name = name;
+      this.age = age;
+    }
+    getGreeting(){
+      return `Hi! I am ${this.name}.`;
+    }
+    getPersonDescription(){
+      return `I am ${this.age} years old.`;
+    }
+  }
 
- // let square = (x) => x * x;
- // console.log(square(10))
+  class Employee extends Person {
+    constructor (name,age, title){
+      super(name, age);
+      this.title = title;
+    }
+    getGreeting(){
+      if (this.title){
+        return `Hi! I am ${this.name}. I work as a ${this.title}`;
+      }else{
+          return super.getGreeting();
+      }
+    }
+    hasJob(){
+      return !!this.title;
+      console.log(me.hasJob());
+    }
+  }
 
-
- let user = {
-   name : 'KC',
-
-   sayHi (){
-    // console.log(this.name);
-    setTimeout(()=>{
-      console.log(this.name);
-    },1000);
-   }
- };
- user.sayHi();
-
-
- let numbers = [9, 99, 4, 56];
- let newNUmbers = numbers.map(function(number){
-
-    return number +2;
- });
-
- console.log(newNUmbers);
+  class Programmer extends Person {
+    constructor (name,age, preferredLanguage ='Assemblyn'){
+      super(name, age);
+      this.preferredLanguage = preferredLanguage;
+    }
+    getGreeting(){
+        return `Hi! I am ${this.name}. I'm a ${this.preferredLanguage} developer`;
+    }
+  }
+  let person = new Programmer()
+  console.log(person.getGreeting());
 });

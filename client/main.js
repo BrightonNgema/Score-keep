@@ -49,6 +49,7 @@ Meteor.startup(()=>{
               <p> Hello {name}!</p>
               <p>Second p</p>
               {renderPlayers(players)}
+
             <form onSubmit={handleSubmit}>
               <input type="text" name="playerName" placeholder="Player Name"/>
               <button>Add Player</button>
